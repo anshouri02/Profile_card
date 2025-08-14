@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -13,22 +13,19 @@
       --ring: #6c7bff;
       --shadow: 0 10px 25px rgba(0,0,0,.35);
     }
-    *{ box-sizing: border-box }
+    *{ box-sizing: border-box; margin: 0; padding: 0; }
     body{
-      margin:0; 
       min-height:100vh; 
       display:grid; 
       place-items:center;
-      background: radial-gradient(1200px 800px at 10% 10%, #2b2f77, transparent),
-                  radial-gradient(800px 800px at 90% 20%, #1c4b6d, transparent),
-                  linear-gradient(135deg, #0b0f1f, #1c2038 60%, #0b0f1f);
+      background: url('https://i.postimg.cc/V61h7y3n/4d1e5a4ec5e222a73a6e4f226299501b.jpg') no-repeat center center/cover;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
-      animation: bgMove 15s ease-in-out infinite alternate;
+      animation: bgZoom 15s ease-in-out infinite alternate;
     }
-    @keyframes bgMove {
-      0% { background-position: 0 0, 0 0, 0 0; }
-      100% { background-position: 50px 50px, -50px -50px, 0 0; }
+    @keyframes bgZoom {
+      0% { background-size: 100% auto; }
+      100% { background-size: 110% auto; }
     }
     .card{
       width:min(92vw, 420px);
@@ -88,9 +85,9 @@
   </style>
 </head>
 <body>
-  <article class="card" aria-label="Profile card">
+  <article class="card">
     <div class="aura"></div>
-    <div class="ring" aria-hidden="true"></div>
+    <div class="ring"></div>
     <header class="header">
       <div class="avatar">
         <img src="https://i.postimg.cc/7hDwBMKN/Sigma-Male-PC-Wallpaper-scaled.jpg" alt="Profile photo" />
@@ -101,20 +98,36 @@
       </div>
     </header>
     <section class="links">
-      <a class="iconbtn" href="https://t.me/cyberownerz" target="_blank" rel="noopener">TG</a>
-      <a class="iconbtn" href="https://youtube.com/@8xjodz" target="_blank" rel="noopener">YT</a>
-      <a class="iconbtn" href="https://instagram.com/itz_comeback_edits" target="_blank" rel="noopener">IG</a>
-      <a class="iconbtn" href="mailto:ishowyouprime@gmail.com">Mail</a>
+      <a class="iconbtn" href="https://t.me/cyberownerz" target="_blank">
+        <!-- Telegram Icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.999 15.168..."/></svg>
+      </a>
+      <a class="iconbtn" href="https://youtube.com/@8xjodz" target="_blank">
+        <!-- YouTube Icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 7.2..."/></svg>
+      </a>
+      <a class="iconbtn" href="https://instagram.com/itz_comeback_edits" target="_blank">
+        <!-- Instagram Icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2..."/></svg>
+      </a>
+      <a class="iconbtn" href="mailto:ishowyouprime@gmail.com">
+        <!-- Email Icon -->
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4..."/></svg>
+      </a>
     </section>
     <div class="cta">
-      <a class="btn" href="https://t.me/Cyberownerz" target="_blank" rel="noopener">Message</a>
-      <a class="btn" href="mailto:IshowYouPrime@gmail.com">Email</a>
+      <a class="btn" href="https://t.me/Cyberownerz" target="_blank">
+        Message
+      </a>
+      <a class="btn" href="mailto:IshowYouPrime@gmail.com">
+        Email
+      </a>
     </div>
   </article>
 
   <!-- Background Song -->
   <audio autoplay loop>
-    <source src="https://sambalpuristar.in/Nunca%20Muda-(SambalpuriStar.In).mp3" type="audio/mpeg">
+    <source src="https://Nunca Muda-(SambalpuriStar.In).mp3" type="audio/mpeg">
   </audio>
 </body>
-</html>  
+</html>
