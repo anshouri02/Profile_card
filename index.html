@@ -1,79 +1,133 @@
-            <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Profile Card</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      height: 100vh;
-      background: url('https://i.pinimg.com/originals/12/1f/6b/121f6b0ec7d1c63e4c2e7b6c1467b44b.jpg') no-repeat center center fixed;
+    :root{
+      --card: #14172a;
+      --text: #e8eaf6;
+      --muted: #a8b0d3;
+      --ring: #6c7bff;
+      --shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
+    *{ box-sizing: border-box; margin: 0; padding: 0; }
+    body{
+      min-height:100vh; 
+      display:flex; 
+      align-items:center;
+      justify-content:center;
+      background: url('https://i.postimg.cc/V61h7y3n/4d1e5a4ec5e222a73a6e4f226299501b.jpg') no-repeat center center;
       background-size: cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      animation: bgZoom 15s ease-in-out infinite alternate;
     }
-
-    .card {
-      background: rgba(20, 23, 42, 0.9);
-      border-radius: 20px;
-      padding: 20px;
-      width: 300px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    @keyframes bgZoom {
+      0% { background-size: 100% auto; }
+      100% { background-size: 110% auto; }
     }
-
-    .profile-pic {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border: 3px solid #fff;
+    .card{
+      width:min(92vw, 420px);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)), var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      animation: float 4s ease-in-out infinite;
     }
-
-    h2 {
-      color: #fff;
-      margin: 10px 0;
+    .aura {
+      position: absolute;
+      inset: -50px;
+      background: radial-gradient(circle, rgba(108,123,255,0.4), transparent 70%);
+      animation: auraPulse 4s infinite alternate;
+      z-index: -1;
+      filter: blur(60px);
     }
-
-    p {
-      color: #a8b0d3;
-      font-size: 14px;
-      margin-bottom: 20px;
+    @keyframes auraPulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      100% { transform: scale(1.2); opacity: 0.8; }
     }
-
-    .socials {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
-
-    .socials a img {
-      width: 30px;
-      height: 30px;
-      transition: transform 0.3s ease;
+    .ring{ position:absolute; inset:-2px; border-radius:24px; padding:2px; pointer-events:none; animation: spin 10s linear infinite; }
+    .ring::before{ content:""; position:absolute; inset:-2px; border-radius:24px;
+      background: conic-gradient(from 180deg at 50% 50%, #6c7bff, #37d3ff, #9b7bff, #6c7bff);
+      filter: blur(18px); opacity:.18; }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
-
-    .socials a img:hover {
-      transform: scale(1.2);
+    .header{ display:flex; gap:16px; align-items:center; }
+    .avatar{ width:140px; height:140px; border-radius: 50%; flex:0 0 auto; overflow:hidden; border:2px solid rgba(255,255,255,.12); box-shadow: 0 6px 14px rgba(0,0,0,.35); animation: pulse 3s ease-in-out infinite; }
+    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
+    .title{ display:grid; gap:6px; }
+    .name{ font-weight:700; font-size:1.4rem; letter-spacing:.2px; }
+    .tagline{ color:var(--muted); font-size:.95rem; }
+    .links{ margin-top:18px; display:grid; grid-template-columns: repeat(4,1fr); gap:12px; }
+    .iconbtn{ display:grid; place-items:center; height:56px; border-radius:14px; border:1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03); cursor:pointer; text-decoration:none; transition: transform .12s ease, background .2s ease, border-color .2s ease; }
+    .iconbtn:hover{ transform: translateY(-2px) scale(1.05); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.16); }
+    .iconbtn img{ width:26px; height:26px; }
+    .cta{ margin-top:16px; display:flex; gap:12px; }
+    .btn{ flex:1; display:inline-flex; align-items:center; justify-content:center; gap:10px; height:48px; border-radius:14px; border:1px solid rgba(255,255,255,.1); background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); color:var(--text); font-weight:600; text-decoration:none; cursor:pointer; transition: transform .12s ease, background .2s ease, border-color .2s ease; }
+    .btn:hover{ transform: translateY(-1px) scale(1.03); border-color: rgba(255,255,255,.18); background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06)); }
+    .btn img{ width:22px; height:22px; }
+    @media (max-width: 380px){ .links{ grid-template-columns: repeat(2,1fr); } }
   </style>
 </head>
 <body>
-  <div class="card">
-    <img src="https://i.pinimg.com/736x/3a/62/07/3a6207c65a383d6c78adce9bcf29c4b6.jpg" alt="Profile" class="profile-pic" />
-    <h2>John Doe</h2>
-    <p>Web Developer | Designer</p>
-    <div class="socials">
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram"></a>
-      <a href="mailto:example@mail.com"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email"></a>
+  <article class="card">
+    <div class="aura"></div>
+    <div class="ring"></div>
+    <header class="header">
+      <div class="avatar">
+        <img src="https://i.postimg.cc/7hDwBMKN/Sigma-Male-PC-Wallpaper-scaled.jpg" alt="Profile photo" />
+      </div>
+      <div class="title">
+        <div class="name">CYBER OWNER</div>
+        <div class="tagline">WEB BUILDER • BOT DEVELOPER • TG KING</div>
+      </div>
+    </header>
+    <section class="links">
+      <a class="iconbtn" href="https://t.me/cyberownerz" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+      </a>
+      <a class="iconbtn" href="https://youtube.com/@8xjodz" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
+      </a>
+      <a class="iconbtn" href="https://instagram.com/itz_comeback_edits" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+      </a>
+      <a class="iconbtn" href="mailto:ishowyouprime@gmail.com">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail">
+      </a>
+    </section>
+    <div class="cta">
+      <a class="btn" href="https://t.me/Cyberownerz" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram">
+        Message
+      </a>
+      <a class="btn" href="mailto:IshowYouPrime@gmail.com">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Email">
+        Email
+      </a>
     </div>
-  </div>
+  </article>
+
+  <!-- Background Song -->
+  <audio autoplay loop>
+    <source src="https://Nunca Muda-(SambalpuriStar.In).mp3" type="audio/mpeg">
+  </audio>
 </body>
-</html>
+</html>           
